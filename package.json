@@ -1,7 +1,23 @@
 {
+    "config": {
+        "ssh": {
+        "user": "test.wael.co.uk",
+        "server": "wael.co.uk",
+        "folders": {
+            "live": "~/web/public_html"
+        }
+        },
+        "frontend": {
+        "path": "UI"
+        }
+    },
     "private": true,
     "type": "module",
     "scripts": {
+        "start:web": "yarn --cwd $npm_package_config_frontend_path quasar dev",
+        "make:ssl": "yarn --cwd $npm_package_config_frontend_path make:ssl",
+        "start:queue": "php artisan queue:work --timeout=36000 --stop-when-empty",
+        "fresh:dev": "php  artisan migrate:fresh --seed",
         "dev": "vite",
         "build": "vite build"
     },
